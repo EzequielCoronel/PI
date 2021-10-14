@@ -1,0 +1,70 @@
+body {
+  background: black;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: cursive;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.img {
+  background-image: url("https://p4.wallpaperbetter.com/wallpaper/649/274/476/map-world-map-artwork-countries-wallpaper-preview.jpg");
+  height: 100vh;
+}
+
+.number  {
+  display: inline;
+  padding-left: 3px;
+  padding-right: 3px;
+  cursor: pointer;
+}
+
+.pdm {
+  color: white;
+  text-align: center;
+}
+
+.ing {
+  cursor: pointer;
+  border-style: ridge;
+}
+
+.ca {
+  color: white;
+  cursor: pointer;
+  text-decoration-line: inherit;
+}
+
+.p {
+  color: white;
+}
+
+.vcp {
+  cursor: pointer;
+  border-radius: initial;
+  max-width: initial;
+}
+
+.pag {
+  color: whitesmoke;
+}
+
+.asd {
+  color: white;
+}
+
+.det {
+  color: white;
+}
+
+.dt {
+  color: white;
+}
+
