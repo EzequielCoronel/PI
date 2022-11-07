@@ -1,47 +1,31 @@
 import React from 'react';
-// importo los hooks que voy a usar de react
 import {useState, useEffect} from 'react';
-// importo los hooks de react-redux
 import {useDispatch, useSelector} from 'react-redux';
-// importo las actions
-import {getCountries, filterCountriesByContinent, filterTypeActivity, orderByName, orderByPopulation} from '../actions';
+import {getCountries, filterCountriesByContinent, orderByName, orderByPopulation} from '../actions';
 import {Link} from 'react-router-dom';
-// importo los componentes
 import Card from './Card';
 import Paginado from './Paginado';
 import SearchBar from "./SearchBar";
 
 export default function Home () {
+
 	const dispatch = useDispatch();
-	const allCountries = useSelector ((state) => state.countries) // usando hooks
-	const allActivities = useSelector ((state) => state.activities)
-	const [orden, setOrden] = useState('')
-	const [currentPage, setCurrentPage] = useState(1) // setearme la pagina actual en 1
-	const [countriesPerPage, setCountriesPerPage] = useState(10) // paises por pagina
-	const indexOfLastCountryI = currentPage * countriesPerPage // 10
-	const indexOfFirstCountryI = indexOfLastCountryI - countriesPerPage // 0
-	const currentCountriesI = allCountries.slice(indexOfFirstCountryI, indexOfLastCountryI) // slice > agarra un arreglo y lo divide
+	const allCountries = useSelector ((state) => state.countries);
 	
-
-	const [indexOfLastCountry, setIndexOfLastCountry] = useState(9)
-	const [indexOfFirstCountry, setIndexOfFirstCountry] = useState(0)
-	const [currentCountries, setCurrentCountries] = useState(currentCountriesI)
-
+	const [orden, setOrden] = useState('');
+	const [currentPage, setCurrentPage] = useState(1);
+	const [countriesPerPage, setCountriesPerPage] = useState(9);
+	const indexOfLastCountry = currentPage * countriesPerPage;
+	const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
+	const currentCountries = allCountries.slice(indexOfFirstCountry, indexOfLastCountry);
 
 	const paginado = (pageNumber) => {
-		setCurrentPage(pageNumber)
-		const indexOfLast = pageNumber * countriesPerPage
-		setIndexOfLastCountry(indexOfLast)
-		const indexOfFirst = indexOfLast - countriesPerPage
-		setIndexOfFirstCountry(indexOfFirst)
-		const sliceCountry = allCountries.slice(indexOfFirst, indexOfLast)
-		setCurrentCountries(sliceCountry)
+		setCurrentPage(pageNumber);
 	}
 
-
 	useEffect (() => {
-		dispatch(getCountries()); // despacho la fn que trae los personajes
-	},[])
+		dispatch(getCountries()); 
+	},[dispatch])
 
 	function handleClick (e) {
 		e.preventDefault();
@@ -50,10 +34,6 @@ export default function Home () {
 
 	function handleFilterContinent (e) {
 		dispatch(filterCountriesByContinent(e.target.value))
-	}
-
-	function handleFilterActivity (e) {
-		dispatch(filterTypeActivity(e.target.value))
 	}
 
 	function handleSort (e, type) {
@@ -71,8 +51,8 @@ export default function Home () {
 
 	return (
 		<div>
-			<Link to= '/activity' className='ca'>Crear actividad</Link>
-			<h1 className='p'>Paises del mundo</h1>
+			<Link to= '/activity' className='ca'>CREAR ACTIVIDAD</Link>
+			<h1 className='p'>Países del mundo</h1>
 			<button onClick={e => {handleClick(e)}} className='vcp'>
 				Volver a cargar todos los paises
 			</button>
@@ -96,13 +76,13 @@ export default function Home () {
 					</select>
 					<SearchBar/>
 					<Paginado className='pag'
-					countriesPerPage= {countriesPerPage}
-					allCountries= {allCountries.length}
-					paginado= {paginado}
+						countriesPerPage= {countriesPerPage}
+						allCountries= {allCountries.length}
+						paginado= {paginado}
 					/>
-				{currentCountriesI?.map((e) => {
+				{currentCountries?.map((e) => {
 						return (
-							<div>
+							<div key={e.id}>
 								<Link to={"/home/" + e.id}>
 									<Card name={e.name} image={e.img} continent={e.continent} key={e.id} />
 								</Link>

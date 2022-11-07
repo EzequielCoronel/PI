@@ -1,10 +1,10 @@
-	import axios from 'axios';
+import axios from 'axios';
 
 export function getCountries(){
 	return async function (dispatch){
 		var json = await axios.get("http://localhost:3001/countries");
 		return dispatch ({
-			type: "GET_COUNTRIES",
+			type: 'GET_COUNTRIES',
 			payload: json.data
 		})
 	}
@@ -13,9 +13,9 @@ export function getCountries(){
 export function getNameCountries (name) {
 	return async function (dispatch) {
 		try {
-			var json = await axios.get ("http://localhost:3001/countries?name=" + name);
+			var json = await axios.get("http://localhost:3001/countries?name=" + name);
 			return dispatch ({
-				type: "GET_NAME_COUNTRIES",
+				type: 'GET_NAME_COUNTRIES',
 				payload: json.data
 			})
 		}
@@ -27,7 +27,7 @@ export function getNameCountries (name) {
 
 export function filterCountriesByContinent(payload){
 	return {
-		type: "FILTER_BY_CONTINENT",
+		type: 'FILTER_BY_CONTINENT',
 		payload
 	}
 }	
@@ -36,13 +36,6 @@ export function postActivity (payload) {
 	return async function (dispatch) {
 		const response = await axios.post("http://localhost:3001/activity", payload);
 		return response;
-	}
-}
-
-export function filterTypeActivity(payload) {
-	return {
-		type: "FILTER_BY_TYPEACTIVITY",
-		payload
 	}
 }
 
@@ -65,7 +58,7 @@ export function getDetail (id) {
 		try {
 			var json = await axios.get("http://localhost:3001/countries/" + id);
 			return dispatch ({
-				type: "GET_DETAILS",
+				type: 'GET_DETAILS',
 				payload: json.data
 			})
 		}

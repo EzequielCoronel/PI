@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, useSelector} from 'react-redux';
 import {getDetail} from "../actions/index";
 import {useEffect} from "react";
 import Card from './Card';
@@ -11,7 +11,7 @@ export default function Detail(props) {
 	const detail = useSelector ((state) => state.detail)
 
 	useEffect(() => {
-		dispatch(getDetail(props.match.params.id));
+		dispatch(getDetail());
 	},[dispatch])
 
 
@@ -29,7 +29,8 @@ export default function Detail(props) {
 					<h1>Actividades:</h1>
 					{detail.activities?.map((e) => {
 						return (
-							<div className='dt'>
+							<div className='dt' key={e.id}>
+
 								<h2>{e.name}</h2>
 								<h2>Dificultad: {e.difficulty}</h2>
 								<h2>Duracion: {e.duration}</h2>
@@ -45,8 +46,3 @@ export default function Detail(props) {
 		</div>
 		)
 }
-
-{/*<h1>{myActivity[0].name}</h1>
-<h2>Dificultad: {myActivity[0].difficulty}</h2>
-<h3>Duracion: {myActivity[0].duration}</h3>
-<h4>Temporada: {myActivity[0].season}</h4> */}

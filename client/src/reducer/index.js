@@ -10,18 +10,21 @@ function rootReducer (state = initialState, action) {
 		case 'GET_COUNTRIES': 
 			return {
 			...state,
-			countries: action.payload, // en el estado vacio mando todo lo que venga de get countries
-			allCountries: action.payload,
+			countries: action.payload, 
+			allCountries: action.payload
 		}
+
 		case 'GET_NAME_COUNTRIES' :
 		return {
 			...state,
 			countries: action.payload
 		}
+
 		case 'POST_ACTIVITY':
 		return {
 			...state,
 		}
+
 		case 'FILTER_BY_CONTINENT':
 			const allCountries = state.allCountries;
 			const continentFiltered = action.payload === 'All' ? allCountries : allCountries.filter(e => e.continent === action.payload)
@@ -29,10 +32,7 @@ function rootReducer (state = initialState, action) {
 				...state,
 				countries: continentFiltered
 		}
-		case 'FILTER_BY_TYPEACTIVITY':
-			return {
 
-		}
 		case 'ORDER_BY_NAME':
 			let sortedArr = action.payload === 'asc' ?
 			state.countries.sort(function (a, b) {
@@ -57,6 +57,7 @@ function rootReducer (state = initialState, action) {
 					...state,
 					countries: sortedArr
 				}
+
 			case 'ORDER_BY_POPULATION':
 				let sortedA = action.payload === 'asc' ?
 			state.countries.sort(function (a, b) {
@@ -81,7 +82,7 @@ function rootReducer (state = initialState, action) {
 					...state,
 					countries: sortedA
 				}
-				case "GET_DETAILS":
+				case 'GET_DETAILS':
 					return {
 						...state,
 						detail: action.payload
